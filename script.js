@@ -1,5 +1,7 @@
 var timerEl = document.getElementById('countdown');
+var beginButton = document.getElementById('begin-button');
 var mainEl = document.getElementById('main');
+var question = document.getElementById('question');
 
 function countdown() {
     var timeLeft = 15;

@@ -6,7 +6,7 @@ main {
     border-radius: 10pt;
 }
 
-button {
+begin-button {
     border: solid, black, 2pt;
     border-radius: 5pt;
     font-size: 18pt;
@@ -15,6 +15,6 @@ button {
     padding: 5pt;
 }
 
-button:hover {
+begin-button:hover {
     background-color: blueviolet;
 }
