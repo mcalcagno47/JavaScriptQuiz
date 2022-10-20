@@ -4,7 +4,7 @@ var mainEl = document.getElementById('main');
 var question = document.getElementById('question');
 
 function countdown() {
-    var timeLeft = 15;
+    var timeLeft = 75;
     var timeInterval = setInterval(function () {
         // As long as the `timeLeft` is greater than 1
         if (timeLeft > 1) {
