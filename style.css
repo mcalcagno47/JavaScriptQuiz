@@ -19,6 +19,12 @@ main {
     background-color: blueviolet;
 }
 
+.score-timer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .time-remaining {
     font-size: 20pt;
     font-family: 'Courier New', Courier, monospace;
