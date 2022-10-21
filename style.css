@@ -18,3 +18,13 @@ main {
 .begin-button:hover {
     background-color: blueviolet;
 }
+
+.time-remaining {
+    font-size: 20pt;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.high-scores {
+    font-size: 20pt;
+    font-family: 'Courier New', Courier, monospace;
+}

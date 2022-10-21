@@ -1,7 +1,7 @@
-var timerEl = document.getElementById('countdown');
-var beginButton = document.getElementById('begin-button');
-var mainEl = document.getElementById('main');
-var question = document.getElementById('question');
+var timerEl = document.getElementById('.time-remaining');
+var beginButton = document.getElementById('.begin-button');
+var mainEl = document.getElementById('.main');
+var questionEl = document.getElementById('.question');
 
 function countdown() {
     var timeLeft = 75;
@@ -26,24 +26,5 @@ function countdown() {
         }
     }, 1000);
 }
-
-
-// Displays the end of quiz message, displaying their score and directing them to the high score section
-function displayMessage() {
-    var questionCount = 0;
-
-    // Uses the `setInterval()` method to call a function to be executed every 1000 milliseconds
-    var questionInterval = setInterval(function () {
-        // If there are no more words left in the message
-        if (words[questionCount] === undefined) {
-            // Use `clearInterval()` to stop the timer
-            clearInterval(questionInterval);
-        } else {
-            // Display one word of the message
-            mainEl.textContent = words[questionCount];
-            questionCount++;
-        }
-    }, 1000);
-}
-
+console.log(countdown);
 countdown();
