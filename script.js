@@ -57,7 +57,7 @@ var quizQuestions = [
 // The startGame function is called when the start button is clicked
 function startGame() {
     isWin = false;
-    timerCount = 5;
+    timerCount = 75;
     // Prevents start button from being clicked when round is in progress
     mainEl.style.display = "none";
     startTimer();
@@ -66,27 +66,28 @@ function startGame() {
         var answerButtonEl = document.createElement("button");
         answerButtonEl.innerHTML = quizQuestions[0].answers[i].answer;
         quizContainerEl.appendChild(answerButtonEl);
+        answerButtonEl.addEventListener("click")
     }
 }
 
 // The winGame function is called when the win condition is met
 function winGame() {
-    wordBlank.textContent = "YOU WON!!!🏆 ";
+    quizContainerEl.textContent = "YOU WON!!!🏆 ";
     winCounter++
-    beginButton.disabled = false;
+    beginButton.disabled = true;
 }
 
 // The loseGame function is called when timer reaches 0
 function loseGame() {
-    wordBlank.textContent = "GAME OVER";
+    quizContainerEl.textContent = "GAME OVER";
     loseCounter++
-    beginButton.disabled = false;
+    beginButton.disabled = true;
 }
 
 function startTimer() {
     timer = setInterval(function () {
         timerCount--;
-        timerEl.textContent = timerCount;
+        timerEl.textContent = "Time Remaining: " + timerCount;
         if (timerCount >= 0) {
             // Tests if win condition is met
             if (isWin && timerCount > 0) {
@@ -130,4 +131,3 @@ function getlosses() {
 }
 
 beginButton.addEventListener("click", startGame);
-

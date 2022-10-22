@@ -1,3 +1,7 @@
+html {
+    background-color: rgb(97, 77, 77);
+}
+
 main {
     text-align: center;
     width: fit-content;
@@ -33,4 +37,12 @@ main {
 .high-scores {
     font-size: 20pt;
     font-family: 'Courier New', Courier, monospace;
+}
+
+.quiz-container {
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+    padding: 29pt;
+    border-radius: 10pt;
 }
