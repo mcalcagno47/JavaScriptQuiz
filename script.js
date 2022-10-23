@@ -120,7 +120,7 @@ function selectAnswer(e) {
         highScoreButton.classList.remove('hide')
         console.log(timerCount)
         getHighScore()
-        stopTimer
+        clearInterval(timer);
     }
 }
 
@@ -181,7 +181,4 @@ function startTimer() {
     }, 1000);
 }
 
-function stopTimer() {
-    timerEl.classList.add('hide')
-}
 
