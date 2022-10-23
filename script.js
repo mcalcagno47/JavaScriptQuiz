@@ -1,17 +1,16 @@
 var timerEl = document.querySelector('.time-remaining');
 var startButton = document.getElementById('start-btn');
 var nextButton = document.getElementById('next-btn');
-var highScoreButton = document.getElementById('high-score-btn')
-var mainEl = document.querySelector('#main');
+var highScoreEl = document.getElementById('high-scores');
+var highScoreButton = document.getElementById('high-score-btn');
 var questionEl = document.getElementById('question');
-var answerButtonsEl = document.getElementById('answer-btns')
+var answerButtonsEl = document.getElementById('answer-btns');
 var questionContainerEl = document.getElementById('question-container');
 
 let shuffledQuestions, currentQuestionIndex
 
 var timer;
 var timerCount;
-var isWin = false;
 
 var question = [
     {
@@ -72,7 +71,7 @@ function startGame() {
     shuffledQuestions = question.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerEl.classList.remove('hide')
-    timerCount = 15
+    timerCount = 75
     startTimer()
     setNextQuestion()
 }
@@ -90,8 +89,6 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
-        } else {
-            button.dataset.wrong = answer.wrong
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsEl.appendChild(button)
@@ -118,9 +115,9 @@ function selectAnswer(e) {
     } else {
         highScoreButton.innerText = 'Go to High Scores'
         highScoreButton.classList.remove('hide')
-        console.log(timerCount)
         getHighScore()
         clearInterval(timer);
+        // logHighScore()
     }
 }
 
@@ -138,22 +135,16 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
-function collectScore() {
-    button.addEventListener('click', getHighScore)
-}
-
 function getHighScore() {
     questionContainerEl.textContent = "Score: " + timerCount;
     localStorage.getItem = timerCount
 }
 
-// The winGame function is called when the win condition is met
-function winGame() {
-    questionContainerEl.textContent = "YOU WON!!!🏆 ";
-    console.log(timerCount)
-}
+// function logHighScore() {
+//     highScoreEl.textContent = "High Score: " + timerCount;
+//     localStorage.getItem = timerCount
+// }
 
-// The loseGame function is called when timer reaches 0
 function loseGame() {
     questionContainerEl.textContent = "GAME OVER";
     nextButton.classList.remove('hide')
@@ -164,21 +155,9 @@ function startTimer() {
     timer = setInterval(function () {
         timerCount--;
         timerEl.textContent = "Time Remaining: " + timerCount;
-        if (timerCount >= 0) {
-            // Tests if win condition is met
-            if (isWin && timerCount > 0) {
-                // Clears interval and stops timer
-                clearInterval(timer);
-                winGame();
-            }
-        }
-        // Tests if time has run out
         if (timerCount === 0) {
-            // Clears interval
             clearInterval(timer);
             loseGame();
         }
     }, 1000);
 }
-
-
