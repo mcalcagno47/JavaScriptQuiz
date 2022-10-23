@@ -1,8 +1,9 @@
 var timerEl = document.querySelector('.time-remaining');
-var beginButton = document.getElementById('begin-button');
+var startButton = document.getElementById('start-btn');
 var mainEl = document.querySelector('#main');
-var questionEl = document.querySelector('#question');
-var quizContainerEl = document.querySelector('#quiz-container');
+var questionEl = document.getElementById('question');
+var answerButtonsEl = document.getElementById('answer-btns')
+var questionContainerEl = document.getElementById('question-container');
 
 var winCount;
 var loseCount;
@@ -11,7 +12,7 @@ var timerCount;
 var isWin = false;
 var currentQuestion = 0;
 
-const quizQuestions = [
+var quizQuestions = [
     {
         question: 'Question 1?',
         answers: [
@@ -59,34 +60,34 @@ const quizQuestions = [
     }
 ];
 
+startButton.addEventListener("click", startGame);
 
 // The startGame function is called when the start button is clicked
 function startGame() {
-    isWin = false;
+    startButton.classList.add('hide');
+    questionContainerEl.classList.remove('hide')
     timerCount = 75;
-    // Prevents start button from being clicked when round is in progress
-    mainEl.style.display = "none";
     startTimer();
-    questionEl.textContent = quizQuestions[0].question;
-    for (var i = 0; i < quizQuestions[0].answers.length; i++) {
-        var answerButtonEl = document.createElement("button");
-        answerButtonEl.innerHTML = quizQuestions[0].answers[i].answer;
-        quizContainerEl.appendChild(answerButtonEl);
-    }
+    showQuestion();
+}
+
+function showNextQuestion() {
+    questionEl(shuffledQuestions[currentQuestionIndex])
+}
+
+function showQuestion(question) {
+    questionEl.innerText = question.quizQuestions;
 }
 
 // The winGame function is called when the win condition is met
 function winGame() {
     quizContainerEl.textContent = "YOU WON!!!🏆 ";
-    winCounter++
-    beginButton.disabled = true;
+    console.log(timerCount)
 }
 
 // The loseGame function is called when timer reaches 0
 function loseGame() {
     quizContainerEl.textContent = "GAME OVER";
-    loseCounter++
-    beginButton.disabled = true;
 }
 
 function startTimer() {
@@ -110,29 +111,3 @@ function startTimer() {
     }, 1000);
 }
 
-// These functions are used by init
-function getWins() {
-    // Get stored value from client storage, if it exists
-    var storedWins = localStorage.getItem("winCount");
-    // If stored value doesn't exist, set counter to 0
-    if (storedWins === null) {
-        winCounter = 0;
-    } else {
-        // If a value is retrieved from client storage set the winCounter to that value
-        winCounter = storedWins;
-    }
-    //Render win count to page
-    win.textContent = winCounter;
-}
-
-function getlosses() {
-    var storedLosses = localStorage.getItem("loseCount");
-    if (storedLosses === null) {
-        loseCounter = 0;
-    } else {
-        loseCounter = storedLosses;
-    }
-    lose.textContent = loseCounter;
-}
-
-beginButton.addEventListener("click", startGame);

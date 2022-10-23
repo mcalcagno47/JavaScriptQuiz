@@ -6,9 +6,9 @@
 }
 
 :root {
-    --hue-neutral: rgb(92, 88, 88);
-    --hue-wrong: rgb(99, 0, 0);
-    --hue-correct: rgb(0, 94, 0);
+    --hue-neutral: 200;
+    --hue-wrong: 0;
+    --hue-correct: 145;
 }
 
 main {
@@ -20,7 +20,7 @@ main {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: var(--hue);
+    background-color: hsl(var(--hue), 100%, 20%);
     font-size: 48pt;
 }
 
@@ -41,13 +41,13 @@ html {
     border: solid, black, 2pt;
     border-radius: 5pt;
     font-size: 18pt;
-    background-color: blue;
-    color: white;
+    background-color: hsl(var(--hue), 100%, 50%);
+    color: rgb(0, 0, 0);
     padding: 5pt;
 }
 
 .begin-button:hover {
-    background-color: blueviolet;
+    background-color: rgb(202, 5, 202);
 }
 
 .score-timer-container {
@@ -81,4 +81,37 @@ html {
 
 .btn {
     font-size: 24pt;
+    background-color: hsl(var(--hue), 100%, 50%);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    font-size: 24pt;
+    background-color: rgb(202, 5, 202);
+    transition: 0.1s;
+}
+
+.btn.correct {
+    --hue: var(--hue-correct);
+}
+
+.btn.wrong {
+    --hue: var(--hue-wrong);
+}
+
+.start-btn,
+.next-btn {
+    font-size: 24pt;
+    padding: 10px 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
 }
