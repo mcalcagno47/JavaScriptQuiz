@@ -119,7 +119,8 @@ function selectAnswer(e) {
         highScoreButton.innerText = 'Go to High Scores'
         highScoreButton.classList.remove('hide')
         console.log(timerCount)
-        collectScore()
+        getHighScore()
+        stopTimer
     }
 }
 
@@ -138,7 +139,6 @@ function clearStatusClass(element) {
 }
 
 function collectScore() {
-    button.classList.add('btn')
     button.addEventListener('click', getHighScore)
 }
 
@@ -179,5 +179,9 @@ function startTimer() {
             loseGame();
         }
     }, 1000);
+}
+
+function stopTimer() {
+    timerEl.classList.add('hide')
 }
 
