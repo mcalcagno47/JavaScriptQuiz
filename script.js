@@ -1,34 +1,34 @@
 var timerEl = document.querySelector('.time-remaining');
 var startButton = document.getElementById('start-btn');
+var nextButton = document.getElementById('next-btn');
 var mainEl = document.querySelector('#main');
 var questionEl = document.getElementById('question');
 var answerButtonsEl = document.getElementById('answer-btns')
 var questionContainerEl = document.getElementById('question-container');
 
-var winCount;
-var loseCount;
+let shuffledQuestions, currentQuestionIndex;
+
 var timer;
 var timerCount;
 var isWin = false;
-var currentQuestion = 0;
 
-var quizQuestions = [
+var question = [
     {
-        question: 'Question 1?',
+        question: 'Who was the first captain of the NCC-1701?',
         answers: [
-            { text: 'answer 1', correct: true },
-            { text: 'answer 2', correct: false },
-            { text: 'answer 3', correct: false },
-            { text: 'answer 4', correct: false }
+            { text: 'Robert April', correct: true },
+            { text: 'Christopher Pike', correct: false },
+            { text: 'James Kirk', correct: false },
+            { text: 'Will Decker', correct: false }
         ]
     },
     {
-        question: 'Question 2?',
+        question: 'What class was the USS Valiant?',
         answers: [
-            { text: 'answer 1', correct: false },
-            { text: 'answer 2', correct: false },
-            { text: 'answer 3', correct: true },
-            { text: 'answer 4', correct: false }
+            { text: 'Valiant', correct: false },
+            { text: 'Intrepid', correct: false },
+            { text: 'Defiant', correct: true },
+            { text: 'Galaxy', correct: false }
         ]
     },
     {
@@ -60,34 +60,53 @@ var quizQuestions = [
     }
 ];
 
-startButton.addEventListener("click", startGame);
+startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    showNextQuestion()
+})
 
-// The startGame function is called when the start button is clicked
 function startGame() {
     startButton.classList.add('hide');
-    questionContainerEl.classList.remove('hide')
+    shuffledQuestions = question.sort(() => Math.random() - .5);
+    currentQuestionIndex = 0;
+    questionContainerEl.classList.remove('hide');
     timerCount = 75;
     startTimer();
-    showQuestion();
+    // showQuestion();
 }
 
-function showNextQuestion() {
-    questionEl(shuffledQuestions[currentQuestionIndex])
+function setQuestion() {
+    showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
 function showQuestion(question) {
-    questionEl.innerText = question.quizQuestions;
+    questionEl.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('btn')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+}
+
+function showNextQuestion(question) {
+    questionEl.innerText = question.question;
 }
 
 // The winGame function is called when the win condition is met
 function winGame() {
-    quizContainerEl.textContent = "YOU WON!!!🏆 ";
+    questionContainerEl.textContent = "YOU WON!!!🏆 ";
     console.log(timerCount)
 }
 
 // The loseGame function is called when timer reaches 0
 function loseGame() {
-    quizContainerEl.textContent = "GAME OVER";
+    questionContainerEl.textContent = "GAME OVER";
 }
 
 function startTimer() {
