@@ -1,13 +1,40 @@
-html {
-    background-color: rgb(97, 77, 77);
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+:root {
+    --hue-neutral: rgb(92, 88, 88);
+    --hue-wrong: rgb(99, 0, 0);
+    --hue-correct: rgb(0, 94, 0);
 }
 
 main {
-    text-align: center;
-    width: fit-content;
-    margin: auto;
-    padding: 29pt;
-    border-radius: 10pt;
+    --hue: var(--hue-neutral);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--hue);
+    font-size: 48pt;
+}
+
+main.correct {
+    --hue: var(--hue-correct);
+}
+
+main.wrong {
+    --hue: var(--hue-wrong);
+}
+
+html {
+    background-color: var(--hue-neutral);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .begin-button {
@@ -31,18 +58,27 @@ main {
 
 .time-remaining {
     font-size: 20pt;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .high-scores {
     font-size: 20pt;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .quiz-container {
-    text-align: center;
-    width: fit-content;
-    margin: auto;
-    padding: 29pt;
-    border-radius: 10pt;
+    width: 800px;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    border: 3px solid black;
+}
+
+.btn-list {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    font-size: 24pt;
 }
