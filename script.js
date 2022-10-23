@@ -11,44 +11,50 @@ var timerCount;
 var isWin = false;
 var currentQuestion = 0;
 
-var quizQuestions = [
+const quizQuestions = [
     {
-        question: "Question 1",
+        question: 'Question 1?',
         answers: [
-            {
-                answer: "answer 1"
-            },
-            {
-                answer: "answer 2"
-            },
-            {
-                answer: "answer 3"
-            }
+            { text: 'answer 1', correct: true },
+            { text: 'answer 2', correct: false },
+            { text: 'answer 3', correct: false },
+            { text: 'answer 4', correct: false }
         ]
     },
     {
-        question: "Question 2",
+        question: 'Question 2?',
         answers: [
-            {
-                answer: "answer 1"
-            },
-            {
-                answer: "answer 2"
-            },
-            {
-                answer: "answer 3"
-            }
+            { text: 'answer 1', correct: false },
+            { text: 'answer 2', correct: false },
+            { text: 'answer 3', correct: true },
+            { text: 'answer 4', correct: false }
         ]
     },
     {
-        question: "Question 3",
+        question: 'Question 3?',
         answers: [
-            {
-                answer: "answer 1"
-            },
-            {
-                answer: "answer 2"
-            }
+            { text: 'answer 1', correct: false },
+            { text: 'answer 2', correct: true },
+            { text: 'answer 3', correct: false },
+            { text: 'answer 4', correct: false }
+        ]
+    },
+    {
+        question: 'Question 4?',
+        answers: [
+            { text: 'answer 1', correct: false },
+            { text: 'answer 2', correct: false },
+            { text: 'answer 3', correct: true },
+            { text: 'answer 4', correct: false }
+        ]
+    },
+    {
+        question: 'Was this assignment the hardest one yet?',
+        answers: [
+            { text: 'Yes', correct: true },
+            { text: 'My goodness, yes', correct: true },
+            { text: 'It took me over 20 hours to complete', correct: true },
+            { text: 'Nope, finished it early', correct: false },
         ]
     }
 ];
@@ -66,7 +72,6 @@ function startGame() {
         var answerButtonEl = document.createElement("button");
         answerButtonEl.innerHTML = quizQuestions[0].answers[i].answer;
         quizContainerEl.appendChild(answerButtonEl);
-        answerButtonEl.addEventListener("click")
     }
 }
 
