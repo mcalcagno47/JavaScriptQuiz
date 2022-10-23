@@ -35,7 +35,7 @@ var question = [
         question: 'Question 3?',
         answers: [
             { text: 'answer 1', correct: false },
-            { text: 'answer 2', correct: true },
+            { text: 'the answer', correct: true },
             { text: 'answer 3', correct: false },
             { text: 'answer 4', correct: false }
         ]
@@ -45,7 +45,7 @@ var question = [
         answers: [
             { text: 'answer 1', correct: false },
             { text: 'answer 2', correct: false },
-            { text: 'answer 3', correct: true },
+            { text: 'the answer', correct: true },
             { text: 'answer 4', correct: false }
         ]
     },
@@ -63,7 +63,7 @@ var question = [
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
-    showNextQuestion()
+    setNextQuestion()
 })
 
 function startGame() {
@@ -89,6 +89,9 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
+        } else {
+            button.dataset.wrong = answer.wrong
+            timer - 15
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsEl.appendChild(button)
@@ -113,7 +116,7 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     } else {
-        startButton.innerText = 'Restart'
+        startButton.innerText = 'Go to High Scores'
         startButton.classList.remove('hide')
     }
 }
@@ -130,10 +133,6 @@ function setStatusClass(element, correct) {
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
-}
-
-function showNextQuestion(question) {
-    questionEl.innerText = question.question;
 }
 
 // The winGame function is called when the win condition is met
