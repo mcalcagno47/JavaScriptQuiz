@@ -14,39 +14,39 @@ var timerCount;
 
 var questionBank = [
     {
-        question: 'Who was the first captain of the NCC-1701?',
+        question: 'Math.floor performs the following action?',
         answers: [
-            { id: 0, text: 'Robert April', correct: true },
-            { id: 1, text: 'Christopher Pike', correct: false },
-            { id: 2, text: 'James Kirk', correct: false },
-            { id: 3, text: 'Will Decker', correct: false }
+            { id: 0, text: 'It rounds the number down', correct: true },
+            { id: 1, text: 'It calls the lowest number in an array', correct: false },
+            { id: 2, text: 'It rounds the number up', correct: false },
+            { id: 3, text: 'It calls the highest number in an array', correct: false }
         ]
     },
     {
-        question: 'What class was the USS Valiant?',
+        question: 'Which symbols denote an "or" statement?',
         answers: [
-            { id: 0, text: 'Valiant', correct: false },
-            { id: 1, text: 'Intrepid', correct: false },
-            { id: 2, text: 'Defiant', correct: true },
-            { id: 3, text: 'Galaxy', correct: false }
+            { id: 0, text: '$$', correct: false },
+            { id: 1, text: '&&', correct: false },
+            { id: 2, text: '||', correct: true },
+            { id: 3, text: '^^', correct: false }
         ]
     },
     {
-        question: 'Question 3?',
+        question: 'Why are "let" declarations preferred to "var"?',
         answers: [
-            { id: 0, text: 'answer 1', correct: false },
-            { id: 1, text: 'the answer', correct: true },
-            { id: 2, text: 'answer 3', correct: false },
-            { id: 3, text: 'answer 4', correct: false }
+            { id: 0, text: 'let can be used globally', correct: false },
+            { id: 1, text: 'let is only available for use within a block', correct: true },
+            { id: 2, text: 'let can be re-declared', correct: false },
+            { id: 3, text: 'var and let are interchangeable', correct: false }
         ]
     },
     {
-        question: 'Question 4?',
+        question: 'What does isNaN mean?',
         answers: [
-            { id: 0, text: 'answer 1', correct: false },
-            { id: 1, text: 'answer 2', correct: false },
-            { id: 2, text: 'the answer', correct: true },
-            { id: 3, text: 'answer 4', correct: false }
+            { id: 0, text: 'is Non-applicable Node', correct: false },
+            { id: 1, text: 'Time settings are not correct', correct: false },
+            { id: 2, text: 'is Not a Number', correct: true },
+            { id: 3, text: 'JavaScript file not linked properly', correct: false }
         ]
     },
 ];

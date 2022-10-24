@@ -10,7 +10,7 @@ The project runs in the browser, and does not require an installation
 When the start button is pressed, the questions are asked in a randomized order.  Each right or wrong answer reveals the next button, but wrong answers will result in 15 seconds being deducted from the timer.  At the end of the quiz, the user's score is shown. There was a high score feature that was asked for, but I was unable to implement this in the time allotted.
 
 ## Screenshot
-
+![Screenshot](JavaScriptQuizScreenshot.png "Screenshot of JavaScript Quiz")
 
 ## Credits
 Mark Calcagno
