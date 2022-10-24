@@ -4,7 +4,7 @@ var nextButton = document.getElementById('next-btn');
 var highScoreEl = document.getElementById('high-scores');
 var highScoreButton = document.getElementById('high-score-btn');
 var questionEl = document.getElementById('question');
-var answerButtonsEl = document.getElementById('answer-btns');
+var answerButtonsEl = document.getElementById('answer-list');
 var questionContainerEl = document.getElementById('question-container');
 
 let shuffledQuestions, currentQuestionIndex
@@ -73,20 +73,20 @@ function startGame() {
     questionContainerEl.classList.remove('hide')
     timerCount = 75
     startTimer()
-    setNextQuestion()
+    setNextQuestion(true)
 }
 
-function setNextQuestion() {
+function setNextQuestion(startOfGame) {
     resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+    showQuestion(shuffledQuestions[currentQuestionIndex], startOfGame)
 }
 
-function showQuestion(question) {
+function showQuestion(question, startOfGame = false) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
-        var button = document.createElement('btn')
+        var button = document.createElement('answer-btn')
         button.innerText = answer.text
-        button.classList.add('btn')
+        button.classList.add('answer-btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
         }

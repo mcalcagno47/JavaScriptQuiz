@@ -73,30 +73,31 @@ html {
     border: 3px solid black;
 }
 
-.btn-list {
+.answer-list {
     display: grid;
     gap: 10px;
     margin: 20px 0;
 }
 
-.btn {
+.btn,
+.answer-btn {
     font-size: 24pt;
     background-color: hsl(var(--hue), 100%, 50%);
     padding: 5px 10px;
     border-radius: 5px;
 }
 
-.btn:hover {
+.answer-btn:hover {
     font-size: 24pt;
     background-color: rgb(202, 5, 202);
     transition: 0.1s;
 }
 
-.btn.correct {
+.answer-btn.correct {
     --hue: var(--hue-correct);
 }
 
-.btn.wrong {
+.answer-btn.wrong {
     --hue: var(--hue-wrong);
 }
 
