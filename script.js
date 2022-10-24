@@ -12,52 +12,43 @@ let shuffledQuestions, currentQuestionIndex
 var timer;
 var timerCount;
 
-var question = [
+var questionBank = [
     {
         question: 'Who was the first captain of the NCC-1701?',
         answers: [
-            { text: 'Robert April', correct: true },
-            { text: 'Christopher Pike', correct: false },
-            { text: 'James Kirk', correct: false },
-            { text: 'Will Decker', correct: false }
+            { id: 0, text: 'Robert April', correct: true },
+            { id: 1, text: 'Christopher Pike', correct: false },
+            { id: 2, text: 'James Kirk', correct: false },
+            { id: 3, text: 'Will Decker', correct: false }
         ]
     },
     {
         question: 'What class was the USS Valiant?',
         answers: [
-            { text: 'Valiant', correct: false },
-            { text: 'Intrepid', correct: false },
-            { text: 'Defiant', correct: true },
-            { text: 'Galaxy', correct: false }
+            { id: 0, text: 'Valiant', correct: false },
+            { id: 1, text: 'Intrepid', correct: false },
+            { id: 2, text: 'Defiant', correct: true },
+            { id: 3, text: 'Galaxy', correct: false }
         ]
     },
     {
         question: 'Question 3?',
         answers: [
-            { text: 'answer 1', correct: false },
-            { text: 'the answer', correct: true },
-            { text: 'answer 3', correct: false },
-            { text: 'answer 4', correct: false }
+            { id: 0, text: 'answer 1', correct: false },
+            { id: 1, text: 'the answer', correct: true },
+            { id: 2, text: 'answer 3', correct: false },
+            { id: 3, text: 'answer 4', correct: false }
         ]
     },
     {
         question: 'Question 4?',
         answers: [
-            { text: 'answer 1', correct: false },
-            { text: 'answer 2', correct: false },
-            { text: 'the answer', correct: true },
-            { text: 'answer 4', correct: false }
+            { id: 0, text: 'answer 1', correct: false },
+            { id: 1, text: 'answer 2', correct: false },
+            { id: 2, text: 'the answer', correct: true },
+            { id: 3, text: 'answer 4', correct: false }
         ]
     },
-    {
-        question: 'Was this assignment the hardest one yet?',
-        answers: [
-            { text: 'Yes', correct: true },
-            { text: 'My goodness, yes', correct: true },
-            { text: 'It took me over 20 hours to complete', correct: true },
-            { text: 'Nope, finished it early', correct: false },
-        ]
-    }
 ];
 
 startButton.addEventListener('click', startGame)
@@ -68,10 +59,10 @@ nextButton.addEventListener('click', () => {
 
 function startGame() {
     startButton.classList.add('hide');
-    shuffledQuestions = question.sort(() => Math.random() - .5)
+    shuffledQuestions = questionBank.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerEl.classList.remove('hide')
-    timerCount = 75
+    timerCount = 60
     startTimer()
     setNextQuestion(true)
 }
@@ -81,15 +72,13 @@ function setNextQuestion(startOfGame) {
     showQuestion(shuffledQuestions[currentQuestionIndex], startOfGame)
 }
 
-function showQuestion(question, startOfGame = false) {
+function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
         var button = document.createElement('answer-btn')
         button.innerText = answer.text
         button.classList.add('answer-btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
+        button.setAttribute('id', answer.id)
         button.addEventListener('click', selectAnswer)
         answerButtonsEl.appendChild(button)
     })
@@ -105,11 +94,11 @@ function resetState() {
 
 function selectAnswer(e) {
     var selectedButton = e.target
-    var correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsEl.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
+    var correct = shuffledQuestions[currentQuestionIndex].answers[selectedButton.id].correct
+    setStatusClass(selectedButton, correct)
+    if (!correct) {
+        timerCount -= 15
+    }
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     } else {
@@ -117,7 +106,6 @@ function selectAnswer(e) {
         highScoreButton.classList.remove('hide')
         getHighScore()
         clearInterval(timer);
-        // logHighScore()
     }
 }
 
