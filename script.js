@@ -1,4 +1,5 @@
 var timerEl = document.querySelector('.time-remaining');
+var quizInfo = document.querySelector('.Quiz-info');
 var startButton = document.getElementById('start-btn');
 var nextButton = document.getElementById('next-btn');
 var highScoreEl = document.getElementById('high-scores');
@@ -58,6 +59,7 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame() {
+    quizInfo.classList.add('hide');
     startButton.classList.add('hide');
     shuffledQuestions = questionBank.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
